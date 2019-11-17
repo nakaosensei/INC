@@ -39,8 +39,8 @@ window.onload = function() {
           player.body.bounce.set(0.8);
 	     gyro.frequency = 10;
 		gyro.startTracking(function(o) {
-               player.body.velocity.x += o.gamma/20;
-               player.body.velocity.y += o.beta/20;
+               player.body.velocity.x += o.gamma/30;
+               player.body.velocity.y += o.beta/30;
           });
           
      }
@@ -67,7 +67,7 @@ window.onload = function() {
                game.physics.arcade.collide(player, h,killPlayer);
           }    
           game.physics.arcade.collide(player, enemy1,killPlayer);
-          game.physics.arcade.moveToObject(enemy1, player,50);             
+          game.physics.arcade.moveToObject(enemy1, player,70);             
      }
 
 }
