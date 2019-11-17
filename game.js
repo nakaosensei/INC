@@ -39,8 +39,8 @@ window.onload = function() {
           player.body.bounce.set(0.8);
 	     gyro.frequency = 10;
 		gyro.startTracking(function(o) {
-               player.body.velocity.x += o.gamma/30;
-               player.body.velocity.y += o.beta/30;
+               player.body.velocity.x += o.gamma/15;
+               player.body.velocity.y += o.beta/15;
           });
           
      }
