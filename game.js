@@ -2,7 +2,7 @@ window.onload = function() {
 
 	var game = new Phaser.Game(320,480,Phaser.CANVAS,"",{preload:onPreload, create:onCreate, update:update});                
      var holes = []
-     var count = 240
+     var count = 600
      sentido = 1
      var player
      var enemy1
@@ -48,7 +48,7 @@ window.onload = function() {
      function killPlayer(){
           player.destroy()
           endTime = new Date().getTime();
-          diff = Math.round((endTime-startTime)/60)
+          diff = Math.round((endTime-startTime))
           death = game.add.text(game.width-200, game.height-50, 'Record:'+diff, { fontSize: '8px', fill: '#fff' });		
      }
 
@@ -59,7 +59,7 @@ window.onload = function() {
                game.physics.enable(hole, Phaser.Physics.ARCADE);
                holes.push(hole)
                sentido = sentido*-1
-               count=240
+               count=600
           }else{
                count = count - 1
           }
