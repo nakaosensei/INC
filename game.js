@@ -67,7 +67,7 @@ window.onload = function() {
                game.physics.arcade.collide(player, h,killPlayer);
           }    
           game.physics.arcade.collide(player, enemy1,killPlayer);
-          game.physics.arcade.moveToObject(enemy1, player,70);             
+          game.physics.arcade.moveToObject(enemy1, player,50);             
      }
 
 }
