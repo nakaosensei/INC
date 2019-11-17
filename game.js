@@ -2,7 +2,7 @@ window.onload = function() {
 
 	var game = new Phaser.Game(320,480,Phaser.CANVAS,"",{preload:onPreload, create:onCreate, update:update});                
      var holes = []
-     var count = 600
+     var count = 200
      sentido = 1
      var player
      var enemy1
@@ -59,7 +59,7 @@ window.onload = function() {
                game.physics.enable(hole, Phaser.Physics.ARCADE);
                holes.push(hole)
                sentido = sentido*-1
-               count=600
+               count=200
           }else{
                count = count - 1
           }
