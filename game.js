@@ -48,7 +48,7 @@ window.onload = function() {
      function killPlayer(){
           player.destroy()
           endTime = new Date().getTime();
-          diff = Math.round(((endTime-startTime)/60)/60)
+          diff = Math.round((endTime-startTime)/60)
           death = game.add.text(game.width-200, game.height-50, 'Record:'+diff, { fontSize: '8px', fill: '#fff' });		
      }
 
