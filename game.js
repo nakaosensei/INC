@@ -1,17 +1,19 @@
 window.onload = function() {
 
-	// game definition, 320x480
-	var game = new Phaser.Game(320,480,Phaser.CANVAS,"",{preload:onPreload, create:onCreate});                
+	var game = new Phaser.Game(320,480,Phaser.CANVAS,"",{preload:onPreload, create:onCreate, update:update});                
 
-     // the player
      var player
+     leftCount=5
+     rightCount=5
+     var enemy1
+     
 
-     // function executed on preload
-	function onPreload() {
-	    	game.load.image("player","player.png");	
+     function onPreload() {
+              game.load.image("other","other.png");
+              game.load.image("player","player.png");
+              game.load.image("enemy","enemy.png");	
 	}
 
-	// function to scale up the game to full screen
 	function goFullScreen(){
 		game.scale.pageAlignHorizontally = true;
 		game.scale.pageAlignVertically = true;
@@ -20,28 +22,45 @@ window.onload = function() {
 	}
 
 	// function to be called when the game has been created
-	function onCreate() {
-          // initializing physics system
-          game.physics.startSystem(Phaser.Physics.ARCADE);
-		// going full screen
-          goFullScreen();
-          // adding the player on stage
-          player = game.add.sprite(160,240,"player");
-          // setting player anchor point
-          player.anchor.setTo(0.5);
-          // enabling physics car.body.collideWorldBounds = true;
+	function onCreate() {         
+          game.physics.startSystem(Phaser.Physics.ARCADE);		
+          goFullScreen();          
+          enemy1 = game.add.sprite(100, 100, "enemy");
+          enemy1 = game.add.sprite(200, 200, "enemy");
+          enemy1.anchor.setTo(0.5)
+          game.physics.enable(enemy1, Phaser.Physics.ARCADE);
+
+          player = game.add.sprite(160,240,"player");          
+          player.anchor.setTo(0.5);          
           game.physics.enable(player, Phaser.Physics.ARCADE);
-          // the player will collide with bounds
           player.body.collideWorldBounds = true;
-          // setting player bounce
           player.body.bounce.set(0.8);
-	     // setting gyroscope update frequency
-          gyro.frequency = 10;
-		// start gyroscope detection
-          gyro.startTracking(function(o) {
-               // updating player velocity
+	     gyro.frequency = 10;
+		gyro.startTracking(function(o) {
                player.body.velocity.x += o.gamma/20;
                player.body.velocity.y += o.beta/20;
-          });		
-	}
+          });
+          this.munitionQtde = this.game.add.text(this.game.width-50, this.game.height-50, '5', { fontSize: '32px', fill: '#fff' });		
+     }
+     
+     function killPlayer(){
+          player.destroy()
+     }
+
+     function update() {
+          this.game.physics.arcade.collide(player, enemy1,killPlayer);
+          if (leftCount>0 && rightCount>0){
+               leftCount-=1
+               enemy1.body.x += 2
+          } else if (leftCount == 0 && rightCount>0){
+               rightCount-=1
+               enemy1.body.x -= 2
+          }else{
+               leftCount = 25
+               rightCount = 25
+          }
+          
+          
+     }
+
 }
