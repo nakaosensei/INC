@@ -3,8 +3,6 @@ window.onload = function() {
 	var game = new Phaser.Game(320,480,Phaser.CANVAS,"",{preload:onPreload, create:onCreate, update:update});                
 
      var player
-     leftCount=5
-     rightCount=5
      var enemy1
      
 
@@ -26,7 +24,7 @@ window.onload = function() {
           game.physics.startSystem(Phaser.Physics.ARCADE);		
           goFullScreen();          
           enemy1 = game.add.sprite(100, 100, "enemy");
-          enemy1 = game.add.sprite(200, 200, "enemy");
+          enemy1 = game.add.sprite(30, 200, "enemy");
           enemy1.anchor.setTo(0.5)
           game.physics.enable(enemy1, Phaser.Physics.ARCADE);
 
@@ -48,19 +46,8 @@ window.onload = function() {
      }
 
      function update() {
-          this.game.physics.arcade.collide(player, enemy1,killPlayer);
-          if (leftCount>0 && rightCount>0){
-               leftCount-=1
-               enemy1.body.x += 2
-          } else if (leftCount == 0 && rightCount>0){
-               rightCount-=1
-               enemy1.body.x -= 2
-          }else{
-               leftCount = 25
-               rightCount = 25
-          }
-          
-          
+          game.physics.arcade.collide(player, enemy1,killPlayer);
+          game.physics.arcade.moveToObject(enemy1, player,10);             
      }
 
 }
