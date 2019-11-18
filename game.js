@@ -60,7 +60,7 @@ window.onload = function() {
                holes.push(hole)
                sentido = sentido*-1
                count=200
-               game.physics.arcade.collide(player, hole,killPlayer);
+               
           }else{
                count = count - 1
           }
