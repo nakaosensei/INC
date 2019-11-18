@@ -91,7 +91,7 @@ window.onload = function() {
           }
           for (h of holes){               
                game.physics.arcade.collide(player, h,killPlayer);
-               game.physics.arcade.moveToObject(h, player,10); 
+               game.physics.arcade.moveToObject(h, player,25); 
           }    
           game.physics.arcade.collide(player, enemy1,killPlayer);
           game.physics.arcade.moveToObject(enemy1, player,50);             
