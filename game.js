@@ -52,7 +52,32 @@ window.onload = function() {
           death = game.add.text(game.width-200, game.height-50, 'Record:'+diff, { fontSize: '8px', fill: '#fff' });		
      }
 
+
+     function moveWithPointer(player) {
+          if(!player || player === null || player.body===null){
+               return null
+          }
+          if (game.input.activePointer.isDown) {
+            if (game.input.activePointer.worldX >= game.width * 0.8 && game.input.activePointer.worldY > game.height * 0.8) {
+              return null;
+            }
+            //  400 is the speed it will move towards the mouse
+            game.physics.arcade.moveToPointer(player, 250);
+            if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y)) {
+              //this.body.velocity.setTo(0, 0);
+            }
+          } else {
+            if (player.body===null){
+                 return null
+            }
+            player.body.velocity.setTo(0, 0);
+          }
+        }
+
      function update() {
+          if (!player || player === null || player.body===null){
+               return null
+          }
           if (count<=0){
                var hole = game.add.sprite(player.x+50*sentido, player.y+50*sentido, "other");
                hole.anchor.setTo(0.5)
@@ -64,11 +89,12 @@ window.onload = function() {
           }else{
                count = count - 1
           }
-          for (h of holes){
+          for (h of holes){               
                game.physics.arcade.collide(player, h,killPlayer);
           }    
           game.physics.arcade.collide(player, enemy1,killPlayer);
           game.physics.arcade.moveToObject(enemy1, player,50);             
+          moveWithPointer(player)
      }
 
 }
