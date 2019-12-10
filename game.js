@@ -95,7 +95,7 @@ window.onload = function() {
           }    
           game.physics.arcade.collide(player, enemy1,killPlayer);
           game.physics.arcade.moveToObject(enemy1, player,50);             
-          //moveWithPointer(player)
+          moveWithPointer(player)
      }
 
 }
