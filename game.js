@@ -39,8 +39,8 @@ window.onload = function() {
           player.body.bounce.set(0.2);
 	     gyro.frequency = 10;
 		gyro.startTracking(function(o) {
-               player.x += o.gamma/60;
-               player.y += o.beta/60;
+               player.x += o.gamma/20;
+               player.y += o.beta/20;
           });
           
      }
@@ -64,7 +64,7 @@ window.onload = function() {
             //  400 is the speed it will move towards the mouse
             game.physics.arcade.moveToPointer(player, 250);
             if (Phaser.Rectangle.contains(player.body, game.input.x, game.input.y)) {
-              //this.body.velocity.setTo(0, 0);
+              this.body.velocity.setTo(0, 0);
             }
           } else {
             if (player.body===null){
