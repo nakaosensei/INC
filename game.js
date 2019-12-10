@@ -36,7 +36,7 @@ window.onload = function() {
           player.anchor.setTo(0.5);          
           game.physics.enable(player, Phaser.Physics.ARCADE);
           player.body.collideWorldBounds = true;
-          player.body.bounce.set(0.8);
+          player.body.bounce.set(0.2);
 	     gyro.frequency = 10;
 		gyro.startTracking(function(o) {
                player.x += o.gamma/40;
